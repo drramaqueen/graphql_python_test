@@ -13,9 +13,11 @@ free_object_mutation = '''mutation{ freeObject(number:{}){ number ok } }'''
 is_empty_query = '''{ isEmpty }'''
 available_count_query = '''{ availableCount }'''
 
+
 @pytest.fixture(autouse=True)
 def reset_singletons():
-  ObjectMgr._instances = {}
+    ObjectMgr._instances = {}
+
 
 def test_available_count():
     client = Client(schema)
@@ -26,6 +28,7 @@ def test_available_count():
         }
     }
 
+
 def test_is_empty():
     client = Client(schema)
     executed = client.execute(is_empty_query)
@@ -34,6 +37,7 @@ def test_is_empty():
             "isEmpty": false
         }
     }
+
 
 def test_get_all():
     client = Client(schema)
@@ -135,5 +139,3 @@ def test_get_all():
             }
         }
     }
-
-

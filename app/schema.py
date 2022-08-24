@@ -8,7 +8,6 @@ class Query(graphene.ObjectType):
     is_empty = graphene.Boolean()
     available_count = graphene.Int()
 
-
     @staticmethod
     def resolve_is_empty(self, info):
         return mgr.is_empty()

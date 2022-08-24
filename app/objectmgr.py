@@ -1,5 +1,6 @@
 import queue
 
+
 class Resource:
     """ Some resource that clients need to use. Integer in our case. """
 
@@ -18,6 +19,7 @@ class Resource:
     def __str__(self):
         return str(self.__value)
 
+
 class ObjectMgr:
     """ We need only one instance of the pool for the whole app """
     __instance = None
@@ -31,6 +33,7 @@ class ObjectMgr:
 
     """ Usually Resource has a complex construction process,
         so we need to reuse once created resources. """
+
     def __init__(self, size):
         """
         We need a thread-safe structure with O(1) efficiency of getting and putting values
@@ -50,7 +53,7 @@ class ObjectMgr:
             return Resource(0)
 
     def free_object(self, number):
-        """ We will wait until the element will be enqueued. """ 
+        """ We will wait until the element will be enqueued. """
         self.__pool.put(Resource(number))
 
     def is_empty(self):
