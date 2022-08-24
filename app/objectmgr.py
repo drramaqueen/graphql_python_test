@@ -39,7 +39,7 @@ class ObjectMgr:
         """
         self.__pool = Queue()
         for i in range(size):
-            self.__pool.put(Resource(i))
+            self.__pool.put(Resource(i + 1))
 
     def get_object(self):
         """ We do not wait for the element if the pool is empty, otherwise the request will be blocked
