@@ -1,5 +1,4 @@
-from queue import Queue
-
+import queue
 
 class Resource:
     """ Some resource that clients need to use. Integer in our case. """
@@ -37,7 +36,7 @@ class ObjectMgr:
         We need a thread-safe structure with O(1) efficiency of getting and putting values
         because we will have a lot of these operations. So we can use std module queue for this purpose.
         """
-        self.__pool = Queue()
+        self.__pool = queue.Queue()
         for i in range(size):
             self.__pool.put(Resource(i + 1))
 
@@ -45,8 +44,10 @@ class ObjectMgr:
         """ We do not wait for the element if the pool is empty, otherwise the request will be blocked
         until a new element will be enqueued. """
 
-        # TODO: handle Empty exception in case of empty pool
-        return self.__pool.get_nowait()
+        try:
+            return self.__pool.get_nowait()
+        except queue.Empty:
+            return Resource(0)
 
     def free_object(self, number):
         """ We will wait until the element will be enqueued. """ 

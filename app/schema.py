@@ -1,7 +1,6 @@
 import graphene
 from app.objectmgr import ObjectMgr
 
-
 mgr = ObjectMgr.get_manager_instance(5)
 
 
@@ -39,8 +38,7 @@ class GetObject(graphene.Mutation):
     @staticmethod
     def mutate(root, info):
         number = mgr.get_object().get_value()
-        ok = True
-        return FreeObject(number=number, ok=ok)
+        return FreeObject(number, number != 0)
 
 
 class Mutations(graphene.ObjectType):
