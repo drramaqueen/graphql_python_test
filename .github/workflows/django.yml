@@ -1,0 +1,15 @@
+name: test_project
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test_project:
+
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v3
+       - uses: actions/setup-python@v3
+       - run: pip install -r requirements.txt
+       - run: pytest .
