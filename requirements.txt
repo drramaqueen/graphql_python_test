@@ -1,6 +1,8 @@
-django<=3
+django<4
 graphene<=2
 graphene-django<=2
 graphql-core<3
 django-utils-six
 startup
+pytest
+pytest-django
