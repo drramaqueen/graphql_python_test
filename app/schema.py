@@ -6,13 +6,9 @@ mgr = ObjectMgr.get_manager_instance(5)
 
 
 class Query(graphene.ObjectType):
-    number = graphene.Int()
     is_empty = graphene.Boolean()
     available_count = graphene.Int()
 
-    @staticmethod
-    def resolve_number(self, info):
-        return mgr.get_object().get_value()
 
     @staticmethod
     def resolve_is_empty(self, info):
